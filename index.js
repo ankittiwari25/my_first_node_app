@@ -8,10 +8,10 @@ app.get("/",function(request,response){
         category:"NodeJS",
         status: "published"
     },
-info{
+info:{
 name:"Ankit Tiwari",
 designation:"Sr Flutter Developer"
-}
+},
     endingMessage:"Visit Geeksforgeeks.org for more"
   }
    
