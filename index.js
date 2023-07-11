@@ -1,23 +1,28 @@
-const express = require("express")
+const express = require("express");
+const bodyParser = require('body-parser');
+const cors = require('cors');
 var app = express()
-app.get("/",function(request,response){
- const responseData = {
-      message:"Hello, GFG Learner",
-    articleData:{
-        articleName: "How to send JSON response from NodeJS",
-        category:"NodeJS",
-        status: "published"
-    },
-info:{
-name:"Ankit Tiwari",
-designation:"Sr Flutter Developer"
-},
-    endingMessage:"Visit Geeksforgeeks.org for more"
-  }
-   
-  const jsonContent = JSON.stringify(responseData);
-response.send(jsonContent);
+const port = 3000;
+
+// Where we will keep books
+let books = [];
+
+app.use(cors());
+
+// Configuring body parser middleware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.post('/book', (req, res) => {
+  const book = req.body;
+
+  // Output the book to the console for debugging
+  console.log(book);
+  books.push(book);
+
+  res.send('Book is added to the database');
 })
-app.listen(10000, function () {
-console.log("Started application on port %d", 10000)
+
+app.listen(port, function () {
+console.log("Started application on port %d", port)
 });
